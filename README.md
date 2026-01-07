@@ -1,2 +1,2 @@
 # Data-Science-Project-Template
-This is a tamplate of repository to 
+This repository provides a template with a structured folder organization for Data Science projects.
