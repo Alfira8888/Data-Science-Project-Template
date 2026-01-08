@@ -1,0 +1,51 @@
+data-science-project-template/
+│
+├── app/                    # API / inference layer
+│   ├── main.py
+│   ├── routers/
+│   ├── schemas/
+│   └── services/
+│
+├── src/                    # Core ML & data logic
+│   ├── data/               # data loading, validation, splitting
+│   ├── features/           # feature engineering
+│   ├── models/             # training, inference
+│   ├── evaluation/         # metrics, validation
+│   └── utils/              # shared utilities
+│
+├── data/                   # Local data only (never committed)
+│   ├── raw/                # immutable
+│   ├── external/           # external sources
+│   ├── interim/            # intermediate transformed data
+│   └── processed/          # final datasets for modeling
+│
+├── notebooks/              # EDA and experimentation (local only)
+│
+├── great_expectations/     # Data quality: expectations, checkpoints, validations
+│
+├── reports/                # Final outputs and documentation
+│   ├── figures/            # plots and visualizations
+│   └── summaries/          # markdown / PDF summaries
+│
+├── artifacts/              # Trained and serialized models (e.g. .pkl, .pt, .onnx), model checkpoints,
+│                           # preprocessing objects (encoders, scalers), evaluation metrics
+│                     
+├── docker/                 # Containerization
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│
+├── configs/                # Configuration files (YAML, ENV templates)
+│
+├── scripts/                # CLI / automation
+│
+├── tests/                  # Unit & integration tests
+│
+├── requirements/           # Dependency management
+│   ├── base.txt            # shared logic
+│   ├── dev.txt             # shared dependencies
+│   └── docker.txt          # minimal runtime dependencies, production/runtime only
+│
+├── .dockerignore
+├── .gitignore
+├── README.md
+└── pyproject.toml / uv.lock (opcjonalnie)
