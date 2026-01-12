@@ -1,12 +1,16 @@
 data-science-project-template/
 │
-├── app/                    # API / inference layer
-│   ├── main.py
-│   ├── routers/
-│   ├── schemas/
-│   └── services/
+├── app/                    # This folder contains everything required to serve your application, such as                   
+│   │                       # API, inference, and orchestration, not to train models.
+│   ├── main.py             # Execution scrip
+│   ├── routers/            # API Endpoints to validate inputs and call services (predict.py, health.py, admin.py)
+│   ├── schemas/            # API contracts for request validation, response serialization and OpenAPI docs
+│   └── services/           # Business & Inference Logic: Services orchestrate ML models, databases and feature pipelines:
+│                           #   - inference_service.py - it calls: src/models and src/features
+│                           #   - model_loader.py - model loading
+│                           #   - feature_service.py - ML & data logic. It calls src/ code to train, transform, and evaluate
 │
-├── src/                    # Core ML & data logic
+├── src/                    # Main source code directory
 │   ├── data/               # data loading, validation, splitting
 │   ├── features/           # feature engineering
 │   ├── models/             # training, inference
@@ -28,24 +32,25 @@ data-science-project-template/
 │   └── summaries/          # markdown / PDF summaries
 │
 ├── artifacts/              # Trained and serialized models (e.g. .pkl, .pt, .onnx), model checkpoints,
-│                           # preprocessing objects (encoders, scalers), evaluation metrics
+│                           # preprocessing objects (encoders, scalers), evaluation metrics (local only)
 │                     
 ├── docker/                 # Containerization
-│   ├── Dockerfile
-│   ├── docker-compose.yml
+│   ├── Dockerfile          # Script to create an image for a container
+│   └── docker-compose.yml  # Configuration file defines and manages multi-container Docker applications
 │
-├── configs/                # Configuration files (YAML, ENV templates)
+├── configs/                # Package configuration for distribution. (YAML, ENV templates) 
 │
-├── scripts/                # CLI / automation
+├── scripts/                # Utility scripts (CLI / automation)
 │
-├── tests/                  # Unit & integration tests
+├── tests/                  # Unit & integration tests (test_main.py, test_utils.py)
 │
-├── requirements/           # Dependency management
+├── requirements/           # Project direct dependencies for deployment or sharing with users who may not use uv
 │   ├── base.txt            # shared logic
 │   ├── dev.txt             # shared dependencies
 │   └── docker.txt          # minimal runtime dependencies, production/runtime only
 │
-├── .dockerignore
-├── .gitignore
-├── README.md
-└── pyproject.toml / uv.lock (opcjonalnie)
+├── .dockerignore           # Docker ignore file
+├── .gitignore              # Git ignore file
+├── README.md               # Project documentation
+└── uv.lock                 # .toml file with exact versions of all direct and transitive dependencies for development. 
+                            # It ensures deterministic and reproducible environments across different platforms and systems
